@@ -1,97 +1,88 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+PHAM MINH THU - 23637501 - https://github.com/minhthu26032005-star/23637501_TH2.git - #641299 - Số cuối: 1 - VARIANT: phone | shopFirst | selection | B | card
 
-# Getting Started
+## Bài thi Thực hành 2 - Lập trình Thiết bị Di động (KTXGo)
+- Trường ĐH Công nghiệp TP.HCM (IUH)
+- Họ và tên: PHAM MINH THU
+- MSSV: 23637501
+- Lớp học phần: Lập trình Thiết bị Di động
+- Mã định danh Stamp: #641299
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 📱 Giới thiệu dự án
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+**KTXGo** là ứng dụng di động hỗ trợ sinh viên đặt hàng và giao hàng tận phòng trong khuôn viên Ký túc xá (KTX). Dự án được phát triển bằng **React Native (TypeScript)** đáp ứng đầy đủ các tiêu chuẩn kiến trúc và yêu cầu kỹ thuật của đề thi TH2.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 🛠️ Công nghệ & Thư viện sử dụng
 
-# OR using Yarn
-yarn start
+- **Core & Framework:** React Native 0.87, React 19, TypeScript
+- **Điều hướng (Navigation):** `@react-navigation/native`, `@react-navigation/native-stack`, `@react-navigation/bottom-tabs`
+- **Quản lý State & Cache:** `zustand` (kết hợp `persist` với `@react-native-async-storage/async-storage`), `@tanstack/react-query`
+- **Danh sách tối ưu:** `@shopify/flash-list` (hiển thị 2 cột)
+- **Mạng (Network):** `axios` với Interceptor gắn Header định danh `X-Student-Id`
+- **Phần cứng & Tiện ích:** `expo-location` (định vị GPS & tính phí ship theo công thức Haversine), `expo-haptics` (rung xúc giác)
+- **Module Alias:** `babel-plugin-module-resolver`
+
+---
+
+## 📁 Cấu trúc thư mục (`src/`)
+
+```
+src/
+├── components/
+│   ├── ProductCard.tsx          # Card hiển thị sản phẩm, quy đổi giá VND & kích hoạt Haptic
+│   └── Watermark.tsx            # Component Watermark hiển thị định danh đề thi TH2 & số lượng giỏ hàng
+├── constants/
+│   ├── student.ts               # Khai báo thông tin MSSV, cấu hình Biến thể (VARIANT), công thức Seed
+│   └── theme.ts                 # Bảng màu thương hiệu (Primary, Secondary, Surface, Text, ...)
+├── hooks/
+│   ├── useCampusLocation.ts     # Hook GPS lấy tọa độ và tính phí ship Haversine theo công thức
+│   └── useDebouncedValue.ts     # Hook Debounce hỗ trợ tìm kiếm sản phẩm mượt mà
+├── navigation/
+│   ├── AuthStack.tsx            # Stack điều hướng khi chưa đăng nhập (Login)
+│   ├── MainTabs.tsx             # Bottom Tabs (Cửa hàng, Giỏ hàng, Tôi) sắp xếp theo VARIANT
+│   ├── ShopStack.tsx            # Stack cửa hàng (Home -> Detail)
+│   └── RootNavigator.tsx        # Điều hướng gốc chuyển đổi theo trạng thái Token
+├── screens/
+│   ├── CartScreen.tsx           # Màn hình Giỏ hàng, hiển thị phòng nhận & tổng phí ship
+│   ├── DetailScreen.tsx         # Màn hình Chi tiết sản phẩm (Modal/Card theo VARIANT)
+│   ├── HomeScreen.tsx           # Màn hình Cửa hàng (FlashList + TanStack Query + Debounce)
+│   ├── LoginScreen.tsx          # Màn hình Đăng nhập (Email/Phone theo VARIANT)
+│   └── MeScreen.tsx             # Màn hình Hồ sơ sinh viên, thông số đề thi, GPS & Đăng xuất
+├── services/
+│   ├── apiClient.ts             # Axios instance gắn Header X-Student-Id
+│   └── productApi.ts            # Hàm gọi API lấy danh sách sản phẩm FakeStore
+└── stores/
+    ├── authStore.ts             # Quản lý Token và phiên đăng nhập
+    └── cartStore.ts             # Quản lý giỏ hàng có Persist vào AsyncStorage
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 🎯 Các biến thể đề thi theo MSSV (`23637501`)
 
-### Android
+- **Số cuối MSSV:** `1`
+- **Mã Stamp:** `#641299`
+- **Watermark:** `watermarkAtTop: false` (hiển thị ở thanh đáy)
+- **Trường Auth:** `authField: 'phone'` (đăng nhập bằng Số điện thoại)
+- **Thứ tự Tab:** `tabOrder: 'shopFirst'` (ShopTab -> CartTab -> MeTab)
+- **Phản hồi Haptic:** `hapticOnAdd: 'selection'`
+- **Công thức tính Ship:** `shipFormula: 'B'`
+- **Trình bày chi tiết:** `detailPresentation: 'card'`
 
-```sh
-# Using npm
-npm run android
+---
 
-# OR using Yarn
-yarn android
+## 📸 Ảnh chụp màn hình ứng dụng (`docs/`)
+
+- `docs/screenshot-th2-home.png`: Màn hình Home hiển thị lưới 2 cột và Watermark.
+- `docs/screenshot-th2-cart.png`: Màn hình Giỏ hàng hiển thị định vị GPS và tính cước phí.
+
+---
+
+## 📝 Định danh đề thi
+File `App.tsx` được gắn comment định danh bắt buộc:
+```typescript
+// TH2 | 23637501 | PHAM MINH THU | #641299
 ```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
