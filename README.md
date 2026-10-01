@@ -76,8 +76,13 @@ src/
 
 ## 📸 Ảnh chụp màn hình ứng dụng (`docs/`)
 
+- `docs/screenshot-th2-login.png`: Màn hình Đăng nhập theo số điện thoại (Auth Stack).
 - `docs/screenshot-th2-home.png`: Màn hình Home hiển thị lưới 2 cột và Watermark.
-- `docs/screenshot-th2-cart.png`: Màn hình Giỏ hàng hiển thị định vị GPS và tính cước phí.
+- `docs/screenshot-th2-detail.png`: Màn hình Chi tiết món (Card variant + Haptic feedback).
+- `docs/screenshot-th2-cart.png`: Màn hình Giỏ hàng hiển thị danh sách món, địa chỉ phòng, cước phí ship và tổng tiền.
+- `docs/screenshot-th2-location.png`: Màn hình Tôi / Định vị GPS tính phí ship theo khoảng cách KTX.
+- `docs/screenshot-th2-loading.png`: Màn hình Đang tải dữ liệu món (Loading State).
+- `docs/screenshot-th2-error.png`: Màn hình Trạng thái lỗi và nút Thử lại (Retry).
 
 ---
 
